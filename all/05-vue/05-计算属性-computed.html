@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+        <input type="text" v-model:value="message"><br/>
+        {{write()}}<br/>
+        {{write()}}<br/>
+        {{write()}}<br/>
+        {{write()}}<br/>
+        {{write()}}<br/>
+        {{computedMessage}}<br/>
+        {{computedMessage}}<br/>
+        {{computedMessage}}<br/>
+        {{computedMessage}}<br/>
+        {{computedMessage}}<br/>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                message:"隔壁书涛"
+            },
+            methods:{
+                write(){
+                    console.log("通过方法渲染数据");
+                    return this.message+"在隔壁";
+                },
+            },
+            computed:{
+                computedMessage:{
+                    get(){
+                        console.log("通过计算属性的computedMessage的get方法渲染数据");
+                        return this.message+"在隔壁....";
+                    },
+                    set(value){
+                        console.log("set方法被调用");
+                    }
+                }
+            }
+        })
+    </script>
+
+  </body> 
+</html>

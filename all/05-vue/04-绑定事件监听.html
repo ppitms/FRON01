@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+        <input type="text" value="原始属性" v-model:value="company"/>
+        <button v-on:click="study">去打游戏</button>
+        <button @click="game">去学习</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                company:"隔壁书涛!"
+            },
+            methods:{
+                study(){
+                    alert("去"+this.company+"学习")
+                },
+                game(){
+                    alert("去"+this.company+"打游戏")
+                }
+            }
+        })
+    </script>
+
+  </body> 
+</html>

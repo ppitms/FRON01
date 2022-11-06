@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+
+  </head>
+  <body>
+    <div id="app">
+        {{message}} <br/>
+
+        <router-link to="/welcome">首页</router-link>
+        <router-link to="/invest">投资页</router-link>
+        <router-link to="/user">用户页</router-link>
+
+        <router-view>路由出口</router-view>
+    </div>
+
+    <script>
+        let welcome={template:"<div style='color:red'>欢迎页面</div>"};
+        let invest={template:"<div style='color:red'>投资页面</div>"};
+        let user={template:"<div style='color:red'>用户页面</div>"};
+
+        let routes=[{
+            path:"/",
+            redirect: "/welcome"
+        },{
+            path:"/welcome",
+            component:welcome
+        },{
+            path:"/invest",
+            component:invest
+        },{
+            path:"/user",
+            component:user
+        }]
+
+        let router=new VueRouter({
+            routes,
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+                message:"Vue路由"
+            },
+            router,
+        })
+    </script>
+  </body>
+</html>

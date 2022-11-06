@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+        <input type="text" value="原始属性" v-model:value="message"/>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                message:"隔壁书涛"
+            },
+            created(){
+                let log=document.getElementById("app").innerHTML;
+                console.log(log);
+                console.log("数据已经渲染到页面之前");
+            },
+            mounted(){
+                let log=document.getElementById("app").innerHTML;
+                console.log(log);
+                console.log("数据已经渲染到页面之后");
+            }
+        })
+    </script>
+  </body> 
+</html>

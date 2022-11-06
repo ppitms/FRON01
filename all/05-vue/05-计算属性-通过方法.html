@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+        {{write()}}
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                message:"隔壁书涛"
+            },
+            methods:{
+                write(){
+                    console.log("通过方法渲染数据");
+                    return this.message+"在隔壁";
+                }
+            }
+        })
+    </script>
+
+  </body> 
+</html>

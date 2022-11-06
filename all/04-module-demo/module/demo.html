@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Dom渲染引擎会将html元素渲染成相应的表现形式 -->
+    <h1>Hello Node.js</h1>
+    <!-- JavaScript解析引擎会在浏览器中解析并执行JavaScript代码 -->
+    <script type="module">
+        //红楼式
+        import * as a from './a.js'
+        import * as b from './b.js'
+
+        console.log(a.star)
+        console.log(b.star)
+        a.play()
+        b.play()
+
+        import {play} from './c.js'
+        play()
+
+        //水浒式
+        import d from './d.js'
+        d.star
+        d.play()
+    </script>
+
+  </body> 
+</html>

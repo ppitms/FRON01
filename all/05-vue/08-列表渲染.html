@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in list">{{index+1}} {{item.name}} {{item.age}}</li>
+        </ul>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                list:[{'name':'隔壁书涛','age':12},{'name':'帅气书涛','age':34},{'name':'可爱书涛','age':122}]
+            }
+        })
+    </script>
+
+  </body> 
+</html>

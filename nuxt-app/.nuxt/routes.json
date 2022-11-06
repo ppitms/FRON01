@@ -1,0 +1,59 @@
+[
+  {
+    "name": "about",
+    "path": "/about",
+    "component": "D:\\\\Java\\\\Microsoft VS Code\\\\WorkSpace\\\\FRON01\\\\nuxt-app\\\\pages\\\\about.vue",
+    "chunkName": "pages/about",
+    "_name": "_ca31b02e"
+  },
+  {
+    "path": "/lend",
+    "component": "D:\\\\Java\\\\Microsoft VS Code\\\\WorkSpace\\\\FRON01\\\\nuxt-app\\\\pages\\\\lend.vue",
+    "chunkName": "pages/lend",
+    "children": [
+      {
+        "name": "lend",
+        "path": "",
+        "component": "D:\\\\Java\\\\Microsoft VS Code\\\\WorkSpace\\\\FRON01\\\\nuxt-app\\\\pages\\\\lend\\\\index.vue",
+        "chunkName": "pages/lend/index",
+        "_name": "_2b933042"
+      },
+      {
+        "name": "lend-account",
+        "path": "account",
+        "component": "D:\\\\Java\\\\Microsoft VS Code\\\\WorkSpace\\\\FRON01\\\\nuxt-app\\\\pages\\\\lend\\\\account.vue",
+        "chunkName": "pages/lend/account",
+        "_name": "_58bd1a7a"
+      }
+    ],
+    "_name": "_6a304b43"
+  },
+  {
+    "name": "user",
+    "path": "/user",
+    "component": "D:\\\\Java\\\\Microsoft VS Code\\\\WorkSpace\\\\FRON01\\\\nuxt-app\\\\pages\\\\user\\\\index.vue",
+    "chunkName": "pages/user/index",
+    "_name": "_7629fb83"
+  },
+  {
+    "name": "user-h",
+    "path": "/user/:h",
+    "component": "D:\\\\Java\\\\Microsoft VS Code\\\\WorkSpace\\\\FRON01\\\\nuxt-app\\\\pages\\\\user\\\\_h.vue",
+    "chunkName": "pages/user/_h",
+    "_name": "_0b770788"
+  },
+  {
+    "name": "user-id",
+    "path": "/user/:id",
+    "component": "D:\\\\Java\\\\Microsoft VS Code\\\\WorkSpace\\\\FRON01\\\\nuxt-app\\\\pages\\\\user\\\\_id.vue",
+    "chunkName": "pages/user/_id",
+    "_name": "_67f702ab"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "D:\\\\Java\\\\Microsoft VS Code\\\\WorkSpace\\\\FRON01\\\\nuxt-app\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_8ac1faa4"
+  }
+]
