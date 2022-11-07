@@ -94,14 +94,68 @@ export default {
   },
 
   methods: {
-    //发短信
-    send() {},
+    //发短信（点击获取验证码）
+    send() {
+      //前端校验验证手机号
+      let mobile=this.userInfo.mobile;
+      let reg=/^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0-9]))\d{8}$/
+      if(!reg.test(mobile)){
+        this.$message.error("手机格式错误")
+        return;
+      }
+      //发送验证码
+      this.$axios.get('/api/sms/sendRegistCode/'+this.userInfo.mobile).then(response=>{
+        this.$message.success("发送成功");
+        //倒计时
+        this.timeDown();
+      })
+    },
 
     //倒计时
-    timeDown() {},
+    timeDown() {
+      //倒计时按钮
+      this.sending=true;
+      this.leftSecond=this.second;
+      //循环函数
+      let timer=setInterval(()=>{
+        this.leftSecond--;
+        if(this.leftSecond<=0){
+          this.sending=false;
+          //结束循环恢复按钮（杀掉循环，不可用return，循环会继续叠加）
+          clearInterval(timer);
+        }
+      },1000)
+    },
 
     //注册
-    register() {},
+    register() {
+      //前端校验
+      //正则表达式
+      let mobileReg=/^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0-9]))\d{8}$/
+      let codeReg=/^\d{4}|\d{6}$/
+      let passwordReg=/^[_0-9a-z]{6,24}$/
+      //前端校验验证手机号
+      if(!mobileReg.test(this.userInfo.mobile)){
+        this.$message.error("手机格式错误")
+        return;
+      };
+      //验证验证码是否为空
+      if(!codeReg.test(this.userInfo.code)){
+        this.$message.error("验证码格式不正确")
+        return;
+      }
+      //验证密码
+      if(!passwordReg.test(this.userInfo.password)||this.userInfo.password==null){
+        this.$message.error("密码格式不正确")
+        return;
+      }
+      //发送验证码
+      this.$axios.post('/api/core/userInfo/register',this.userInfo).then(response=>{
+        this.$message.success("注册成功");
+        //切换页面
+        this.step=2;
+      })
+    },
   },
 }
 </script>

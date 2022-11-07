@@ -48,7 +48,30 @@ export default {
 
   methods: {
     //登录
-    login() {},
+    login() {
+      //前端校验
+      //正则表达式
+      let mobileReg=/^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0-9]))\d{8}$/
+      let passwordReg=/^[_0-9a-z]{6,24}$/
+      //前端校验验证手机号
+      if(!mobileReg.test(this.userInfo.mobile)){
+        this.$message.error("手机格式错误")
+        return;
+      };
+      //验证密码
+      if(!passwordReg.test(this.userInfo.password)||this.userInfo.password==null){
+        this.$message.error("密码格式不正确")
+        return;
+      }
+      //发送异步请求
+      this.$axios.$post('/api/core/userInfo/login',this.userInfo).then(response=>{
+        this.$message.success("登陆成功")
+        //将令牌写入cookie
+        cookie.set('userInfo',response.data.userInfoVO);
+        //跳转用户页面
+        window.location.href='/user';
+      })
+    },
   },
 }
 </script>

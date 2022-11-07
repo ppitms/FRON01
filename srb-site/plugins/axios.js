@@ -4,7 +4,7 @@ import cookie from 'js-cookie'
 export default function({ $axios, redirect }) {
   $axios.onRequest((config) => {
     let userInfo = cookie.get('userInfo')
-    if (userInfo) {
+    if (userInfo&&userInfo!='undefined'&&userInfo!='null') {
       // debugger
       userInfo = JSON.parse(userInfo)
       config.headers['token'] = userInfo.token

@@ -119,10 +119,19 @@ export default {
 
   methods: {
     //显示用户信息
-    showInfo() {},
+    showInfo() {
+      let userInfo=cookie.get("userInfo");
+      if (userInfo&&userInfo!='undefined'&&userInfo!='null') {
+        console.log(userInfo)
+        this.userInfo = JSON.parse(userInfo);
+      }
+    },
 
     //退出
-    logout() {},
+    logout() {
+      cookie.set('userInfo','');
+      window.location.href='/login';
+    },
   },
 }
 </script>
