@@ -106,6 +106,29 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/core/borrower',
+    component: Layout,
+    redirect: '/core/borrower/list',
+    name: 'coreBorrower',
+    meta: { title: '借款管理', icon: 'el-icon-user-solid' },
+    alwaysShow:true,
+    children: [
+      {
+        path: 'list',
+        name: 'coreBorrowerList',
+        component: () => import('@/views/core/borrower/list.vue'),
+        meta: { title: '借款等级列表', icon: 'el-icon-s-grid' }
+      },
+      {
+        path: 'detail/:id',
+        name: 'coreBorrowerDetail',
+        component: () => import('@/views/core/borrower/detail.vue'),
+        meta: { title: '借款人详情', icon: 'el-icon-s-grid' },
+        hidden:true,
+      }
+    ]
+  },
+  {
     path: '/core/dict',
     component: Layout,
     redirect: '/core/dict/list',
