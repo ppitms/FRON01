@@ -196,7 +196,6 @@ export default {
     },
     mounted() {
         this.show();
-        console.log(this.borrower)
     },
     methods: {
         //获取数据 

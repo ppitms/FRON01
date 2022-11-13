@@ -105,7 +105,15 @@ export default {
     mounted() {
         this.getBorrowInfoStatusByUserId();
     },
-    //借款申请状态
+    //页面监控借款不能超过最大限度
+    watch:{
+        "borrowInfo.amount"(value){
+            if(value>=this.borrowAmount){
+                this.borrowInfo.amount = this.borrowAmount;
+            }
+        }
+    },
+    //获取借款申请状态
     methods: {
         getBorrowInfoStatusByUserId() {
             this.$axios.$get('/api/core/borrowInfo/getBorrowInfoStatusByUserId')
@@ -136,7 +144,17 @@ export default {
         },
         //查询借款额度
         getBorrowAmount(){
-            
+            // 根据userId查询借款额度
+            this.$axios.$get('/api/core/integralGrade/getBorrowAmount').then(response=>{
+                this.borrowAmount=response.data.borrowAmount;
+            })
+        },
+        //提交借款
+        save(){
+            this.$axios.$post('/api/core/borrowInfo/save',this.borrowInfo).then(response=>{
+                this.$message.success("提交成功")
+                this.active=1;
+            })
         }
     }
 };
