@@ -8,15 +8,12 @@
         <div class="user-head">
           <span class="head-img" title="点击更换头像">
             <span>
-              <img
-                src="~/assets/images/touxiang.png"
-                style="width:88px;height:88px;z-index:0;"
-              />
+              <img src="~/assets/images/touxiang.png" style="width:88px;height:88px;z-index:0;" />
               <i class="headframe" style="z-index:0;"></i>
             </span>
           </span>
         </div>
-        <div class="user-info">
+        <div class="user-info" v-if="status !== 1">
           <ul>
             <li>
               用户名<span>tg_gpdt0139</span>
@@ -31,6 +28,13 @@
             </li>
           </ul>
         </div>
+        <div class="user-info" v-if="status === 1">
+          <ul>
+            <li>
+              <h2>绑定成功</h2>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="pmain-money">
         <ul v-if="$parent.userType === 1">
@@ -39,14 +43,14 @@
               <em>账户余额</em>
               <i class="markicon"></i>
             </span>
-            <span class="truemoney"><i class="f26 fb">0.00 </i> 元</span>
+            <span class="truemoney"><i class="f26 fb">{{userAccount.amount}} </i> 元</span>
           </li>
           <li>
             <span>
               <em>冻结金额</em>
               <i class="markicon"></i>
             </span>
-            <span class="truemoney"><i class="f26 fb">0.00 </i>元</span>
+            <span class="truemoney"><i class="f26 fb">{{userAccount.freezeAmount}} </i>元</span>
           </li>
           <li>
             <span>
@@ -85,5 +89,35 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      status: 0,
+      userAccount: {
+        amount: 0.00,
+        freezeAmount: 0.00
+      }
+    }
+  },
+  mounted () {
+    //获取状态
+    this.getUserBindStatusByUserId();
+    //获取用户账户信息
+    this.getUserAccount();
+  },
+  methods: {
+    //获取状态
+    getUserBindStatusByUserId(){
+      this.$axios.$get('/api/core/userBind/getUserBindStatusByUserId').then(response=>{
+        this.status=response.data.status
+      })
+    },
+    //获取用户账户信息
+    getUserAccount(){
+      this.$axios.$get('/api/core/userAccount/getUserAccount').then(response=>{
+        this.userAccount=response.data.userAccount
+      })
+    }
+  }
+}
 </script>
