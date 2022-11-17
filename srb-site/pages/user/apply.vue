@@ -119,7 +119,7 @@ export default {
             this.$axios.$get('/api/core/borrowInfo/getBorrowInfoStatusByUserId')
                 .then(response => {
                     this.borrowInfoStatus = response.data.borrowInfoStatus;
-                    if (this.borrowInfoStatus == 0) {
+                    if (this.borrowInfoStatus === 0||this.borrowInfoStatus === 2) {
                         this.active = 0;
                         //初始化字典表
                         this.initDictListSelect();
@@ -128,9 +128,6 @@ export default {
                     }
                     if (this.borrowInfoStatus === 1) {
                         this.active = 1;
-                    }
-                    if (this.borrowInfoStatus === 2) {
-                        this.active = 2;
                     }
                 })
         },

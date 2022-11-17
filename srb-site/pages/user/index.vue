@@ -13,7 +13,7 @@
             </span>
           </span>
         </div>
-        <div class="user-info" v-if="status !== 1">
+        <div class="user-info" v-if="$parent.userType === 2">
           <ul>
             <li>
               用户名<span>tg_gpdt0139</span>
@@ -28,7 +28,7 @@
             </li>
           </ul>
         </div>
-        <div class="user-info" v-if="status === 1">
+        <div class="user-info" v-if="$parent.userType !== 2">
           <ul>
             <li>
               <h2>绑定成功</h2>
@@ -43,21 +43,21 @@
               <em>账户余额</em>
               <i class="markicon"></i>
             </span>
-            <span class="truemoney"><i class="f26 fb">{{userAccount.amount}} </i> 元</span>
+            <span class="truemoney"><i class="f26 fb">{{ userAccount.amount }} </i> 元</span>
           </li>
           <li>
             <span>
               <em>冻结金额</em>
               <i class="markicon"></i>
             </span>
-            <span class="truemoney"><i class="f26 fb">{{userAccount.freezeAmount}} </i>元</span>
+            <span class="truemoney"><i class="f26 fb">{{ userAccount.freezeAmount }} </i>元</span>
           </li>
           <li>
             <span>
               <em>累计收益</em>
               <i class="markicon"></i>
             </span>
-            <span class="truemoney"><i class="f26 fb c-pink">0.00 </i> 元</span>
+            <span class="truemoney"><i class="f26 fb c-pink">{{ interestSum }} </i> 元</span>
           </li>
         </ul>
         <ul v-if="$parent.userType === 2">
@@ -95,27 +95,36 @@ export default {
       status: 0,
       userAccount: {
         amount: 0.00,
-        freezeAmount: 0.00
-      }
+        freezeAmount: 0.00,
+      },
+      interestSum: 0.00
     }
   },
-  mounted () {
+  mounted() {
     //获取状态
     this.getUserBindStatusByUserId();
     //获取用户账户信息
     this.getUserAccount();
+    //获取累计收益
+    this.getInterestSum();
   },
   methods: {
     //获取状态
-    getUserBindStatusByUserId(){
-      this.$axios.$get('/api/core/userBind/getUserBindStatusByUserId').then(response=>{
-        this.status=response.data.status
+    getUserBindStatusByUserId() {
+      this.$axios.$get('/api/core/userBind/getUserBindStatusByUserId').then(response => {
+        this.status = response.data.status
       })
     },
     //获取用户账户信息
-    getUserAccount(){
-      this.$axios.$get('/api/core/userAccount/getUserAccount').then(response=>{
-        this.userAccount=response.data.userAccount
+    getUserAccount() {
+      this.$axios.$get('/api/core/userAccount/getUserAccount').then(response => {
+        this.userAccount = response.data.userAccount
+      })
+    },
+    //获取累计收益
+    getInterestSum(){
+      this.$axios.$get('/api/core/lendItemReturn/getInterestSum').then(response => {
+        this.interestSum = response.data.interestSum
       })
     }
   }

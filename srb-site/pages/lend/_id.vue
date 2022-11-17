@@ -57,7 +57,7 @@
             <!-- 标的信息开始 -->
 
             <!-- 投资表单开始 -->
-            <div v-if="userType === 1 && lend.status === 1" class="bd clearfix">
+            <div v-if="userType === 1 && lend.status === 1&&(lend.investAmount / lend.amount)!=1" class="bd clearfix">
                 <div class="data" style="width: auto;">
                     <el-form :inline="true" class="demo-form-inline">
                         <el-form-item label="投资金额">

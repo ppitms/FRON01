@@ -229,6 +229,11 @@ export default {
         return {
             lendList: response.data.lendList
         }
+    },
+    methods: {
+        toDetail(){
+            alert("hhh")
+        }
     }
 }
 </script>
